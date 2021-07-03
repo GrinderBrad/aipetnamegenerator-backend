@@ -1,14 +1,21 @@
-import { IsEnum, IsOptional, IsString } from "class-validator";
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class NameRequestDto {
     @IsString()
+    @IsNotEmpty()
+    country: string
+
+    @IsString()
+    @IsNotEmpty()
     category: string
 
     @IsString()
-    @IsEnum(['MALE', 'FEMALE'])
+    @IsNotEmpty()
+    @IsEnum(['male', 'female'])
     gender: string
 
     @IsString()
+    @IsNotEmpty()
     @IsOptional()
     description: string
 }

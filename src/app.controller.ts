@@ -8,6 +8,6 @@ export class AppController {
 
   @Post("name")
   getName(@Body() dto: NameRequestDto): string {
-    return this.appService.getName(dto.category, dto.gender);
+    return this.appService.getName(dto.category, dto.gender, dto.country);
   }
 }

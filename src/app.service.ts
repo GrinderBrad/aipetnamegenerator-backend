@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
 const maleDogNames = [
   'Charlie',
@@ -108,16 +108,21 @@ const femaleDogNames = [
 ]
 
 const names = {
-  DOG: {
-    MALE: maleDogNames,
-    FEMALE: femaleDogNames
-  }
+  ENGLISH: {
+    DOG: {
+      MALE: maleDogNames,
+      FEMALE: femaleDogNames
+    }
+  },
 }
 
 @Injectable()
 export class AppService {
-  getName(category: string, gender: string): string {
-    const resultNames = names[category.toUpperCase()]?.[gender.toUpperCase()];
+  getName(category: string, gender: string, country: string): string {
+    const resultNames = names[country.toUpperCase()]?.[category.toUpperCase()]?.[gender.toUpperCase()];
+    if (!resultNames) {
+      throw new BadRequestException('wrong category')
+    }
     return resultNames[Math.floor(Math.random() * resultNames.length )]
   }
 }

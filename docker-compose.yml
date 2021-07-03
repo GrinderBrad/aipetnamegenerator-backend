@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  backend:
+    build: .
+    restart: always
+    environment:
+      - VIRTUAL_HOST=api.mypup.io
+      - VIRTUAL_PORT=3000
+    ports:
+      - "3002:3000"
+    networks:
+      mypupio: {}
+networks:
+  mypupio:
+    name: mypupio
