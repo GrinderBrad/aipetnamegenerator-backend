@@ -7,7 +7,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post("name")
-  getName(@Body() dto: NameRequestDto): string {
-    return this.appService.getName(dto.category, dto.gender, dto.country);
+  getName(@Body() dto: NameRequestDto): any {
+    const name = this.appService.getName(dto.category, dto.gender, dto.country);
+    return { name };
   }
 }
