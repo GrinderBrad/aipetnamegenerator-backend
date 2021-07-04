@@ -8,7 +8,7 @@ export class AppController {
 
   @Post("name")
   getName(@Body() dto: NameRequestDto): any {
-    const name = this.appService.getName(dto.category, dto.gender, dto.country);
+    const name = this.appService.getName(dto.category, dto.gender, dto.language);
     return { name };
   }
 }
